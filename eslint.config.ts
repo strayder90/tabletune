@@ -2,7 +2,8 @@ import {defineConfig, globalIgnores} from 'eslint/config';
 import {fixupConfigRules, fixupPluginRules} from '@eslint/compat';
 import jsxA11Y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
-import babelParser from '@babel/eslint-parser';
+import tseslint from 'typescript-eslint';
+import pluginReact from 'eslint-plugin-react';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import js from '@eslint/js';
@@ -38,15 +39,6 @@ export default defineConfig([
                 ...globals.node,
                 ...globals.commonjs
             },
-            ecmaVersion: 2022,
-            sourceType: 'module',
-            parser: babelParser,
-            parserOptions: {
-                requireConfigFile: false,
-                babelOptions: {
-                    configFile: './.babelrc'
-                }
-            }
         },
         settings: {
             'import/resolver': {
@@ -136,4 +128,6 @@ export default defineConfig([
             'no-console': 'off'
         },
     },
+    tseslint.configs.recommended,
+    pluginReact.configs.flat.recommended,
 ]);
