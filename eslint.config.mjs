@@ -18,16 +18,16 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig([
-    globalIgnores(['*/__tests__/**/', 'dev-dist/**', 'src/types/global.d.ts']),
+    globalIgnores(['*/__tests__/**/', 'dist/**', 'dev-dist/**', 'src/types/global.d.ts']),
     {
         files: ['*/.js', '*/.jsx', '*/.ts', '*/.tsx'],
         extends: fixupConfigRules(
             compat.extends(
                 'plugin:jsx-a11y/recommended',
-                "plugin:react/recommended",
+                'plugin:react/recommended',
                 'eslint:recommended',
                 'plugin:import/errors',
-                'plugin:import/warnings',
+                'plugin:import/warnings'
             )
         ),
         plugins: {
@@ -38,7 +38,7 @@ export default defineConfig([
                 ...globals.browser,
                 ...globals.node,
                 ...globals.commonjs
-            },
+            }
         },
         settings: {
             'import/resolver': {
@@ -126,8 +126,8 @@ export default defineConfig([
         files: ['scripts/*'],
         rules: {
             'no-console': 'off'
-        },
+        }
     },
     tseslint.configs.recommended,
-    pluginReact.configs.flat.recommended,
+    pluginReact.configs.flat.recommended
 ]);
