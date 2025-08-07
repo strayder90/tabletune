@@ -18,7 +18,7 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig([
-    globalIgnores(['*/__tests__/**/', 'dev-dist/**', 'src/types/global.d.ts']),
+    globalIgnores(['*/__tests__/**/', 'dist/**', 'dev-dist/**', 'src/types/global.d.ts']),
     {
         files: ['*/.js', '*/.jsx', '*/.ts', '*/.tsx'],
         extends: fixupConfigRules(
