@@ -30,6 +30,9 @@
       "@appComponents/*": [
         "src/modules/app/components/*"
       ],
+      "@constants/*": [
+        "src/modules/app/constants/*"
+      ],
       "@utils/*": [
         "src/utils/*"
       ]

@@ -1,120 +1,139 @@
-import react from "eslint-plugin-react";
-import js from "@eslint/js";
-import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import tseslint from "typescript-eslint";
-import {globalIgnores} from "eslint/config";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import pluginImport from 'eslint-plugin-import';
+import {defineConfig, globalIgnores} from 'eslint/config';
+import {fixupConfigRules, fixupPluginRules} from '@eslint/compat';
+import jsxA11Y from 'eslint-plugin-jsx-a11y';
+import globals from 'globals';
+import babelParser from '@babel/eslint-parser';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import js from '@eslint/js';
+import {FlatCompat} from '@eslint/eslintrc';
 
-export default tseslint.config([
-    globalIgnores(["dist"]),
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const compat = new FlatCompat({
+    baseDirectory: __dirname,
+    recommendedConfig: js.configs.recommended,
+    allConfig: js.configs.all
+});
+
+export default defineConfig([
+    globalIgnores(['*/__tests__/**/', 'dev-dist/**', 'src/types/global.d.ts']),
     {
-        files: ["**/*.{ts,tsx}"],
-        extends: [
-            js.configs.recommended,
-            tseslint.configs.recommended,
-            reactHooks.configs["recommended-latest"],
-            reactRefresh.configs.vite,
-        ],
+        files: ['*/.js', '*/.jsx', '*/.ts', '*/.tsx'],
+        extends: fixupConfigRules(
+            compat.extends(
+                'plugin:jsx-a11y/recommended',
+                "plugin:react/recommended",
+                'eslint:recommended',
+                'plugin:import/errors',
+                'plugin:import/warnings',
+            )
+        ),
         plugins: {
-            import: pluginImport,
-            "@typescript-eslint": typescriptEslint,
-            react,
+            'jsx-a11y': fixupPluginRules(jsxA11Y)
         },
         languageOptions: {
-            ecmaVersion: 2020,
-            globals: globals.browser,
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                ...globals.commonjs
+            },
+            ecmaVersion: 2022,
+            sourceType: 'module',
+            parser: babelParser,
+            parserOptions: {
+                requireConfigFile: false,
+                babelOptions: {
+                    configFile: './.babelrc'
+                }
+            }
         },
-        ignores: [
-            "dist/**",
-            "dev-dist/**",
-            "coverage/**",
-            "*.min.js",
-            "node_modules/**",
-        ],
         settings: {
-            "import/resolver": {
+            'import/resolver': {
                 node: {
-                    extensions: [".js", ".jsx", ".ts", ".tsx"],
+                    extensions: ['.js', '.jsx', '.ts', '.tsx']
                 },
                 alias: {
                     map: [
-                        ["@assets", "./src/assets"],
-                        ["@modules", "./src/modules"],
-                        ["@appComponents", "./src/modules/app/components"],
-                        ["@utils", "./src/utils"],
-                        ["@", "./src"],
+                        ['@modules', './src/modules'],
+                        ['@appComponents', './src/modules/app/components'],
+                        ['@constants', './src/modules/app/constants'],
+                        ['@utils', './src/utils']
                     ],
-                    extensions: [".js", ".jsx", ".ts", ".tsx", ".jpg"],
-                },
+                    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+                }
             },
+            react: {
+                version: 'detect'
+            }
         },
         rules: {
-            "jsx-quotes": ["warn", "prefer-single"],
-            "no-debugger": "warn",
-            // "import/order": [
-            //     "warn",
-            //     {
-            //         groups: [
-            //             ["builtin", "external"],
-            //             "internal",
-            //             ["parent", "sibling"],
-            //             "index",
-            //         ],
-            //         "newlines-between": "always",
-            //     },
-            // ],
-            // "import/named": "warn",
-            // "import/namespace": "off",
-            // "import/default": "error",
-            // "import/export": "error",
-            "no-useless-return": "warn",
-            "no-duplicate-imports": "warn",
-            semi: ["warn", "always"],
-            quotes: ["warn", "single"],
-            indent: [
-                "warn",
-                4,
-                {
-                    SwitchCase: 1,
-                },
-            ],
-            "react/jsx-no-duplicate-props": "warn",
-            "react/react-in-jsx-scope": "off",
-            "no-unused-vars": [
-                "warn",
-                {
-                    varsIgnorePattern: "^React$",
-                },
-            ],
-            eqeqeq: ["warn", "always"],
-            "no-trailing-spaces": "warn",
-            "react/no-array-index-key": "warn",
-            complexity: [
-                "warn",
-                {
-                    max: 10,
-                },
-            ],
-            "prefer-const": "warn",
-            "no-console": "error",
-            "object-curly-spacing": ["warn", "never"],
-            "array-bracket-spacing": ["warn", "never"],
-            "space-in-parens": ["warn", "never"],
-            "react/jsx-no-target-blank": "off",
-            "react-refresh/only-export-components": [
-                "warn",
-                {
-                    allowConstantExport: true,
-                },
-            ],
-            "testing-library/await-async-queries": "error",
-            "testing-library/no-await-sync-queries": "error",
-            "testing-library/no-debugging-utils": "warn",
-            "testing-library/no-dom-import": "off",
-            "testing-library/no-container": "warn",
+            indent: ['error', 4, {SwitchCase: 1}],
+            'no-console': 'error',
+            'padding-line-between-statements': ['error', {
+                blankLine: 'always',
+                prev: '*',
+                next: ['return', 'if', 'while', 'for', 'switch', 'try', 'class', 'function']
+            }],
+
+            // Imports
+            'import/no-unresolved': ['error', {commonjs: true, amd: true}],
+            'import/named': 'warn',
+            'import/namespace': 'warn',
+            'import/default': 'error',
+            'import/export': 'error',
+            'import/order': ['warn', {
+                groups: [['builtin', 'external'], 'internal', ['parent', 'sibling'], 'index'],
+                'newlines-between': 'always'
+            }],
+
+            // React
+            'react/no-deprecated': ['off'],
+            'react/jsx-filename-extension': ['warn', {extensions: ['.js', '.jsx']}],
+            'react/jsx-no-bind': ['off'],
+            'react/jsx-uses-vars': ['error'],
+            'react/jsx-uses-react': 'error',
+            'react/prefer-stateless-function': ['error', {ignorePureComponents: true}],
+            'react/jsx-no-duplicate-props': ['error', {ignoreCase: true}],
+            'react/jsx-no-target-blank': ['error', {enforceDynamicLinks: 'always'}],
+            'react/jsx-pascal-case': 'error',
+            'react/jsx-fragments': ['warn'],
+            'react/no-danger': 'error',
+            'react/no-redundant-should-component-update': 'error',
+            'react/prefer-es6-class': 'error',
+
+            // JSX A11Y
+            'jsx-a11y/anchor-is-valid': 'off',
+            'jsx-a11y/label-has-associated-control': 'off',
+            'jsx-a11y/label-has-for': 'warn',
+            'jsx-a11y/click-events-have-key-events': 'off',
+            'jsx-a11y/no-noninteractive-element-interactions': 'off',
+            'jsx-a11y/no-autofocus': 'off',
+            'jsx-a11y/no-static-element-interactions': 'off',
+
+            'comma-dangle': ['warn', {
+                arrays: 'always-multiline',
+                objects: 'always-multiline',
+                imports: 'always-multiline',
+                exports: 'only-multiline',
+                functions: 'never'
+            }],
+            'jsx-quotes': ['warn', 'prefer-single'],
+            'comma-style': ['warn', 'last'],
+            semi: ['warn', 'always'],
+            'eol-last': ['warn', 'always'],
+            'semi-style': ['warn', 'last'],
+            'no-extra-semi': 'warn',
+            'no-debugger': 'warn',
+            'no-trailing-spaces': 'warn',
+
+            quotes: ['warn', 'single', {avoidEscape: true}]
+        }
+    },
+    {
+        files: ['scripts/*'],
+        rules: {
+            'no-console': 'off'
         },
     },
 ]);
