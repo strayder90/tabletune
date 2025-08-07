@@ -39,14 +39,15 @@
     },
     /* Linting */
     "strict": true,
+    "allowJs": true,
+    "checkJs": true,
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
   },
   "include": [
     "src",
-    "eslint.config.mjs"
   ]
 }
