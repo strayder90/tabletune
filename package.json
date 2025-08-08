@@ -14,7 +14,8 @@
     "preview": "vite preview",
     "build-css": "sass src/",
     "watch-css": "npm run build-css && sass src/ --watch",
-    "typecheck:prod": "tsc -p tsconfig.json --noEmit"
+    "typecheck:prod": "tsc -p tsconfig.json --noEmit",
+    "tsc:diag": "tsc --extendedDiagnostics"
   },
   "dependencies": {
     "@mui/icons-material": "^7.3.1",
