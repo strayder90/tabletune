@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "",
+    "baseUrl": "./src",
     "esModuleInterop": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
@@ -15,15 +15,16 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@modules/*": ["src/modules/*"],
-      "@appComponents/*": ["src/modules/app/components/*"],
-      "@constants/*": ["src/modules/app/constants/*"],
-      "@utils/*": ["src/utils/*"]
+      "@/*": ["*"],
+      "@modules/*": ["modules/*"],
+      "@appComponents/*": ["modules/app/components/*"],
+      "@constants/*": ["modules/app/constants/*"],
+      "@utils/*": ["utils/*"]
     },
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "tests/**/*"
   ],
   "references": [
     {

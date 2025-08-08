@@ -27,15 +27,15 @@
       "DOM",                               // Includes DOM types for browser compatibility
       "DOM.Iterable"                       // Includes DOM.Iterable for iterable elements like NodeList
     ],
-    "jsx": "react-jsx",                    // Uses React JSX transform
-    "incremental": true,                   // Enables incremental compilation for better performance
-    "baseUrl": ".",                         // Sets the base directory for module resolution
-    "paths": {                             // Maps paths for module resolution
-      "@/*": ["src/*"],                    // Maps "@/*" to "src/*"
-      "@modules/*": ["src/modules/*"],     // Maps "@modules/*" to "src/modules/*"
-      "@appComponents/*": ["src/modules/app/components/*"], // Maps "@appComponents/*" to "src/modules/app/components/*"
-      "@constants/*": ["src/modules/app/constants/*"],      // Maps "@constants/*" to "src/modules/app/constants/*"
-      "@utils/*": ["src/utils/*"]           // Maps "@utils/*" to "src/utils/*"
+    "jsx": "react-jsx",                                 // Uses React JSX transform
+    "incremental": true,                                // Enables incremental compilation for better performance
+    "baseUrl": "./src",                                 // Sets the base directory for module resolution
+    "paths": {                                          // Maps paths for module resolution
+      "@/*": ["*"],                                     // Maps "@/*" to "src/*"
+      "@modules/*": ["modules/*"],                      // Maps "@modules/*" to "src/modules/*"
+      "@appComponents/*": ["modules/app/components/*"], // Maps "@appComponents/*" to "src/modules/app/components/*"
+      "@constants/*": ["modules/app/constants/*"],      // Maps "@constants/*" to "src/modules/app/constants/*"
+      "@utils/*": ["utils/*"]                           // Maps "@utils/*" to "src/utils/*"
     },
     // Completeness
     "skipLibCheck": true,                   // Skips type checking of declaration files to improve speed
@@ -43,7 +43,8 @@
   },
   // Projects
   "include": [
-    "src"                                  // Includes all files under the "src" directory for compilation
+    "src/**/*",
+    "tests/**/*"                                  // Includes all files under the "src" directory for compilation
   ],
   // Exclusions
   "exclude": [
