@@ -1,53 +1,59 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "useDefineForClassFields": true,
+    // Type Checking
+    "strict": true,                        // Enforces strict type-checking options
+    "allowJs": true,                       // Allows JavaScript files to be compiled
+    "checkJs": true,                       // Type-checks JavaScript files
+    "noImplicitAny": true,                 // Disallows variables with implicit `any`
+    "noUnusedLocals": false,               // Warns about unused local variables (disabled)
+    "noUnusedParameters": true,            // Warns about unused function parameters
+    "noFallthroughCasesInSwitch": true,    // Prevents fall-through behavior in switch statements
+    "noUncheckedSideEffectImports": true,  // Ensures side effects from imports are checked
+    // Modules
+    "module": "ESNext",                    // Specifies the module system (ESNext)
+    "moduleResolution": "bundler",         // Defines the module resolution strategy (bundler mode)
+    "allowImportingTsExtensions": true,    // Allows importing TypeScript extensions
+    "verbatimModuleSyntax": true,          // Enforces exact module syntax
+    "moduleDetection": "force",            // Forces module detection
+    "resolveJsonModule": true,             // Allows importing JSON files as modules
+    // Interop Constraints
+    "esModuleInterop": true,               // Enables CommonJS/ES module interoperability
+    "allowSyntheticDefaultImports": true,  // Allows default imports for modules without default exports
+    // Language and Environment
+    "target": "ES2022",                    // Specifies ECMAScript target version (ES2022)
+    "useDefineForClassFields": true,       // Ensures proper class field definition
     "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
+      "ES2022",                            // Includes the ES2022 library for type-checking
+      "DOM",                               // Includes DOM types for browser compatibility
+      "DOM.Iterable"                       // Includes DOM.Iterable for iterable elements like NodeList
     ],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@modules/*": [
-        "src/modules/*"
-      ],
-      "@appComponents/*": [
-        "src/modules/app/components/*"
-      ],
-      "@constants/*": [
-        "src/modules/app/constants/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
+    "jsx": "react-jsx",                    // Uses React JSX transform
+    "incremental": true,                   // Enables incremental compilation for better performance
+    "baseUrl": ".",                         // Sets the base directory for module resolution
+    "paths": {                             // Maps paths for module resolution
+      "@/*": ["src/*"],                    // Maps "@/*" to "src/*"
+      "@modules/*": ["src/modules/*"],     // Maps "@modules/*" to "src/modules/*"
+      "@appComponents/*": ["src/modules/app/components/*"], // Maps "@appComponents/*" to "src/modules/app/components/*"
+      "@constants/*": ["src/modules/app/constants/*"],      // Maps "@constants/*" to "src/modules/app/constants/*"
+      "@utils/*": ["src/utils/*"]           // Maps "@utils/*" to "src/utils/*"
     },
-    /* Linting */
-    "strict": true,
-    "allowJs": true,
-    "checkJs": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+    // Completeness
+    "skipLibCheck": true,                   // Skips type checking of declaration files to improve speed
+    "noEmit": true                          // Prevents emitting output files (typically for type checking only)
   },
+  // Projects
   "include": [
-    "src",
+    "src"                                  // Includes all files under the "src" directory for compilation
+  ],
+
+  // 7. Exclusions
+  "exclude": [
+    "src/**/*.test.ts",                    // Excludes all TypeScript test files
+    "src/**/*.test.tsx",                   // Excludes all TypeScript JSX test files
+    "node_modules",                        // Excludes node_modules directory
+    "dist",                                // Excludes dist (build output) folder
+    "scripts",                             // Excludes scripts folder
+    "vitest.config.ts",                    // Excludes vitest configuration file
+    "dev-dist"
   ]
 }

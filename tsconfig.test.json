@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": "",
+    "esModuleInterop": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "jsx": "react",
+    /* Linting */
+    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@modules/*": ["src/modules/*"],
+      "@appComponents/*": ["src/modules/app/components/*"],
+      "@constants/*": ["src/modules/app/constants/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "tsconfig.json"
+    }
+  ]
+}
