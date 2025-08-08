@@ -45,8 +45,7 @@
   "include": [
     "src"                                  // Includes all files under the "src" directory for compilation
   ],
-
-  // 7. Exclusions
+  // Exclusions
   "exclude": [
     "src/**/*.test.ts",                    // Excludes all TypeScript test files
     "src/**/*.test.tsx",                   // Excludes all TypeScript JSX test files
