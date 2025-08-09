@@ -5,6 +5,7 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './App.tsx';
 
 import './assets/css/reset.css';
+import './sass/style.scss';
 
 const container = document.getElementById('root');
 
