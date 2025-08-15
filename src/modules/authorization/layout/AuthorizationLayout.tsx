@@ -5,20 +5,20 @@ import {Outlet} from 'react-router-dom';
 const AuthorizationLayout: React.FC = () => {
     return (
         <Container
-            maxWidth="xs"
+            maxWidth='xs'
             sx={{
                 mt: 8,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
             }}
-            className="--auth-layout-container"
+            className='--auth-layout-container'
         >
             <Avatar
-                src="/favicon.svg"
-                alt="Logo"
+                src='/favicon.svg'
+                alt='Logo'
                 sx={{width: 96, height: 96, mb: 2}}
-                variant="circular"
+                variant='circular'
             />
             <Box sx={{width: '100%'}}>
                 <Outlet/>

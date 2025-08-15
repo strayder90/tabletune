@@ -1,4 +1,5 @@
 import React, {StrictMode} from 'react';
+import type {Root} from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
 import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
@@ -10,13 +11,13 @@ import {App} from './App';
 import '@assets/css/reset.css';
 import '@sass/style.scss';
 
-const container = document.getElementById('root');
+const container: HTMLElement | null = document.getElementById('root');
 
 if (!container) {
     throw new Error('Root container not found');
 }
 
-const root = createRoot(container);
+const root: Root = createRoot(container);
 
 root.render(
     <StrictMode>

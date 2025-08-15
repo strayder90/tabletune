@@ -4,7 +4,7 @@ import {Typography, Box} from '@mui/material';
 const Dashboard: React.FC = () => {
     return (
         <Box>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant='h4' gutterBottom>
                 Welcome to the Dashboard
             </Typography>
             <Typography>

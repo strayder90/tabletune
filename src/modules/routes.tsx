@@ -7,7 +7,7 @@ import Dashboard from '@modules/dashboard/pages/Dashboard';
 import AuthorizationGuard from '@modules/authorization/components/AuthorizationGuard.tsx';
 
 // temporary auth check (replace with real one)
-const isAuthenticated = Boolean(localStorage.getItem('token'));
+const isAuthenticated: boolean = Boolean(localStorage.getItem('token'));
 
 export const RoutesConfig: RouteObject[] = [
     {
@@ -21,7 +21,7 @@ export const RoutesConfig: RouteObject[] = [
         ],
     },
     {
-        element: <AuthorizationGuard isAuthenticated={isAuthenticated} redirectTo="/"/>,
+        element: <AuthorizationGuard isAuthenticated={isAuthenticated} redirectTo='/'/>,
         children: [
             {
                 path: '/dashboard',

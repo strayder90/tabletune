@@ -1,13 +1,9 @@
-// @modules/authorization/guards/AuthorizationGuard.tsx
 import React from 'react';
 import {Navigate, Outlet} from 'react-router-dom';
 
-interface AuthorizationGuardProps {
-    isAuthenticated: boolean;
-    redirectTo?: string;
-}
+import AuthorizationGuardProps from '@modules/authorization/types.ts';
 
-const AuthorizationGuard: React.FC<AuthorizationGuardProps> = ({isAuthenticated, redirectTo = '/'}) => {
+const AuthorizationGuard = ({isAuthenticated, redirectTo = '/'}: AuthorizationGuardProps) => {
     if (!isAuthenticated) {
         return <Navigate to={redirectTo} replace/>;
     }

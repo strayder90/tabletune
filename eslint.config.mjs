@@ -19,6 +19,7 @@ export default defineConfig([
     ]),
     js.configs.recommended,
     pluginReact.configs.flat.recommended,
+    ...tslint.configs.recommended,
     {
         files: ['**/*.{js,jsx,ts,tsx}'],
         basePath: './src',
@@ -42,7 +43,7 @@ export default defineConfig([
             react: pluginReact,
             'react-hooks': reactHooksPlugin,
             'jsx-a11y': jsxA11yPlugin,
-            '@typescript-eslint': tslint
+            '@typescript-eslint': tslint.plugin
         },
         settings: {
             'import/resolver': {
@@ -75,7 +76,6 @@ export default defineConfig([
                 next: ['return', 'if', 'while', 'for', 'switch', 'try', 'class', 'function']
             }],
             eqeqeq: 'error',
-            semi: ['warn', 'always'],
             'no-unused-vars': 'warn',
             'prefer-const': ['warn', {ignoreReadBeforeAssign: true}],
             'no-console': 'error',
@@ -86,7 +86,7 @@ export default defineConfig([
                 exports: 'only-multiline',
                 functions: 'never'
             }],
-            'jsx-quotes': ['warn', 'prefer-double'],
+            'jsx-quotes': ['warn', 'prefer-single'],
             'comma-style': ['warn', 'last'],
             'eol-last': ['warn', 'always'],
             'semi-style': ['warn', 'last'],
@@ -94,6 +94,16 @@ export default defineConfig([
             'no-debugger': 'warn',
             'no-trailing-spaces': 'warn',
             quotes: ['warn', 'single', {avoidEscape: true}],
+            '@typescript-eslint/typedef': ['error', {
+                arrayDestructuring: true,                 // Require type annotations for array destructuring
+                arrowParameter: true,                     // Require type annotations for parameters of arrow functions
+                memberVariableDeclaration: true,          // Require type annotations for class fields
+                objectDestructuring: true,                // Require type annotations for object destructuring
+                parameter: true,                          // Require type annotations for parameters of functions/methods
+                propertyDeclaration: true,                // Require type annotations for class properties
+                variableDeclaration: true,                // Require type annotations for variables
+                variableDeclarationIgnoreFunction: true,  // Ignore variables initialized with a function expression
+            }],
             // Imports
             'import/no-unresolved': ['error', {commonjs: true, amd: true}],
             'import/named': 'warn',
