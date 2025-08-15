@@ -1,5 +1,6 @@
 import React from 'react';
 import type {RouteObject} from 'react-router-dom';
+
 import AuthorizationLayout from '@modules/authorization/layout/AuthorizationLayout';
 import LoginPage from '@modules/authorization/pages/Login';
 import Dashboard from '@modules/dashboard/pages/Dashboard';
@@ -15,17 +16,17 @@ export const RoutesConfig: RouteObject[] = [
         children: [
             {
                 index: true,
-                element: <LoginPage/>
-            }
-        ]
+                element: <LoginPage/>,
+            },
+        ],
     },
     {
-        element: <AuthorizationGuard isAuthenticated={isAuthenticated} redirectTo='/'/>,
+        element: <AuthorizationGuard isAuthenticated={isAuthenticated} redirectTo="/"/>,
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard/>
-            }
-        ]
-    }
+                element: <Dashboard/>,
+            },
+        ],
+    },
 ];

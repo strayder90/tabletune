@@ -10,7 +10,7 @@ const AuthorizationLayout: React.FC = () => {
                 mt: 8,
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
             }}
             className="--auth-layout-container"
         >

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {StrictMode} from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import {store, persistor} from '@/redux/store.tsx';
 
-import App from './App.tsx';
-import './assets/css/reset.css';
-import './sass/style.scss';
+import {persistor, store} from '@redux/store';
+
+import {App} from './App';
+import '@assets/css/reset.css';
+import '@sass/style.scss';
 
 const container = document.getElementById('root');
 

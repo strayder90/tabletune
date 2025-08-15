@@ -1,8 +1,7 @@
 import React from 'react';
-import TabletuneRouter from '@/TabletuneRouter.tsx';
 
-const App = () => {
-    return <TabletuneRouter />;
+import TabletuneRouter from './TabletuneRouter';
+
+export const App: React.FC = () => {
+    return <TabletuneRouter/>;
 };
-
-export default App;

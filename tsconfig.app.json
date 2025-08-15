@@ -13,29 +13,29 @@
     "module": "ESNext",                    // Specifies the module system (ESNext)
     "moduleResolution": "bundler",         // Defines the module resolution strategy (bundler mode)
     "allowImportingTsExtensions": true,    // Allows importing TypeScript extensions
-    "verbatimModuleSyntax": true,          // Enforces exact module syntax
-    "moduleDetection": "force",            // Forces module detection
     "resolveJsonModule": true,             // Allows importing JSON files as modules
     // Interop Constraints
     "esModuleInterop": true,               // Enables CommonJS/ES module interoperability
     "allowSyntheticDefaultImports": true,  // Allows default imports for modules without default exports
     // Language and Environment
-    "target": "ES2022",                    // Specifies ECMAScript target version (ES2022)
+    "target": "ESNext",                    // Specifies ECMAScript target version (ES2022)
     "useDefineForClassFields": true,       // Ensures proper class field definition
     "lib": [
-      "ES2022",                            // Includes the ES2022 library for type-checking
+      "ESNext",                            // Includes the ES2022 library for type-checking
       "DOM",                               // Includes DOM types for browser compatibility
       "DOM.Iterable"                       // Includes DOM.Iterable for iterable elements like NodeList
     ],
-    "jsx": "react-jsx",                                 // Uses React JSX transform
-    "incremental": true,                                // Enables incremental compilation for better performance
-    "baseUrl": "./src",                                 // Sets the base directory for module resolution
-    "paths": {                                          // Maps paths for module resolution
-      "@/*": ["*"],                                     // Maps "@/*" to "src/*"
-      "@modules/*": ["modules/*"],                      // Maps "@modules/*" to "src/modules/*"
-      "@appComponents/*": ["modules/app/components/*"], // Maps "@appComponents/*" to "src/modules/app/components/*"
-      "@constants/*": ["modules/app/constants/*"],      // Maps "@constants/*" to "src/modules/app/constants/*"
-      "@utils/*": ["utils/*"]                           // Maps "@utils/*" to "src/utils/*"
+    "jsx": "react-jsx",                    // Uses React JSX transform
+    "incremental": true,                   // Enables incremental compilation for better performance
+    "baseUrl": "./src",                    // Sets the base directory for module resolution
+    "paths": {
+      "@*": ["*"],
+      "@assets/*": ["assets/*"],
+      "@modules/*": ["modules/*"],
+      "@appComponents/*": ["modules/app/components/*"],
+      "@constants/*": ["modules/app/constants/*"],
+      "@utils/*": ["utils/*"],
+      "@redux/*": ["redux/*"]
     },
     // Completeness
     "skipLibCheck": true,                   // Skips type checking of declaration files to improve speed
@@ -43,17 +43,17 @@
   },
   // Projects
   "include": [
-    "src/**/*",
-    "tests/**/*"                                  // Includes all files under the "src" directory for compilation
+    "src/**/*",                             // Includes all files under the "src" directory for compilation
   ],
   // Exclusions
   "exclude": [
-    "src/**/*.test.ts",                    // Excludes all TypeScript test files
-    "src/**/*.test.tsx",                   // Excludes all TypeScript JSX test files
-    "node_modules",                        // Excludes node_modules directory
-    "dist",                                // Excludes dist (build output) folder
-    "scripts",                             // Excludes scripts folder
-    "vitest.config.ts",                    // Excludes vitest configuration file
+    "src/**/*.test.ts",                     // Excludes all TypeScript test files
+    "src/**/*.test.tsx",                    // Excludes all TypeScript JSX test files
+    "node_modules",                         // Excludes node_modules directory
+    "dist",                                 // Excludes dist (build output) folder
+    "scripts",                              // Excludes scripts folder
+    "vitest.config.ts",                     // Excludes vitest configuration file
+    "vite.config.ts",
     "dev-dist"
   ]
 }

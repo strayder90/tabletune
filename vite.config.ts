@@ -60,10 +60,12 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src'),
-            '@modules/*': resolve(__dirname, 'src/modules/*'),
-            '@appComponents/*': resolve(__dirname, 'src/modules/app/components/*'),
-            '@constants/*': resolve(__dirname, 'src/modules/app/constants/*'),
-            '@utils/*': resolve(__dirname, 'src/utils/*')
+            '@assets': resolve(__dirname, 'src/assets'),
+            '@modules': resolve(__dirname, 'src/modules'),
+            '@appComponents': resolve(__dirname, 'src/modules/app/components'),
+            '@constants': resolve(__dirname, 'src/modules/app/constants'),
+            '@utils': resolve(__dirname, 'src/utils'),
+            '@redux': resolve(__dirname, 'src/redux')
         }
     },
     server: {
